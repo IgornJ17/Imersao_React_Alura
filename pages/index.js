@@ -1,13 +1,18 @@
 import styled from 'styled-components'
 import db from "../db.json";
-import Widget from "../src/components/Widget/index"
+import Widget from "../src/components/Widget/"
+import Footer from "../src/components/Footer/"
+import GitHubCorner from "../src/components/GitHubCorner/"
+import QuizBackground from "../src/components/QuizBackground/"
+import QuizLogo from "../src/components/QuizLogo/"
+
 
 const Title = styled.h1`
   font-size: 50px;
   color: ${({ theme }) => theme.colors.primary};
 `;
 const BackgroundImage = styled.div`
-  background-image: url(${db.bg});
+  background-image: url(../_images/page_principal.jpg);
   flex: 1;
   background-size: cover;
   background-position: center;
@@ -15,7 +20,7 @@ const BackgroundImage = styled.div`
 
 const QuizContainer = styled.div`
   width: 100%;
-  max-width: 350px,
+  max-width: 350px;
   padding-top: 45px;
   margin: auto 10%;
   @media screen and (max-width: 500px) {
@@ -25,11 +30,9 @@ const QuizContainer = styled.div`
 `;
 
 
-
 export default function Home() {
   return (
-    
-    <BackgroundImage>
+    <QuizBackground>
       <QuizContainer>
         <Widget>
           <Widget.Header>
@@ -43,6 +46,9 @@ export default function Home() {
           <Widget.Content>
           </Widget.Content>
           </Widget>
-      </QuizContainer> 
-    </BackgroundImage>);
+          <Footer/>
+      </QuizContainer>
+      <GitHubCorner projectUrl="https://github.com/IgornJ17/Imersao_React_Alura"/>
+    </QuizBackground>
+  );
 }
