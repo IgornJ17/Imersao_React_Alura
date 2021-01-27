@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import db from "../db.json";
 import Widget from "../src/components/Widget/"
 import Footer from "../src/components/Footer/"
@@ -31,13 +34,31 @@ const QuizContainer = styled.div`
 
 
 export default function Home() {
+  var router = useRouter();
+  var [name, setName] = useState('');
+
   return (
     <QuizBackground>
+      <Head>
+        <title>Responda o Quiz</title>
+      </Head>
       <QuizContainer>
         <Widget>
           <Widget.Header>
           </Widget.Header>
           <Widget.Content>
+              <form onSubmit={function(event) {
+                event.preventDefault();
+                router.push(`/quiz?name=${name}`)
+              }}>
+                  <input onChange={function(event){
+                    setName(event.target.value);
+
+                  }} placeholder="Digite seu nome" />
+                  <button type="submit" disabled={name.length === 0}>
+                    Start {name}
+                  </button>
+              </form>
           </Widget.Content>
           </Widget>
         <Widget>
